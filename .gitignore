@@ -1,0 +1,8 @@
+node_modules/
+*.vsix
+.gravion/
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vscode-test/
