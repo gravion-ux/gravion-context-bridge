@@ -1,0 +1,97 @@
+{
+  "name": "gravion-context-bridge",
+  "displayName": "Gravion Context Bridge",
+  "description": "Create privacy-conscious Markdown handoffs for continuing AI-assisted development sessions.",
+  "version": "0.1.0",
+  "publisher": "gravion-ux",
+  "license": "MIT",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "ai",
+    "context",
+    "handoff",
+    "developer-tools",
+    "privacy"
+  ],
+  "main": "./src/extension.js",
+  "activationEvents": [
+    "onCommand:gravionContextBridge.createSessionHandoff",
+    "onCommand:gravionContextBridge.copyLatestHandoff",
+    "onCommand:gravionContextBridge.openLatestHandoff",
+    "onCommand:gravionContextBridge.addProjectNote"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "gravionContextBridge.createSessionHandoff",
+        "title": "Gravion Context Bridge: Create Session Handoff"
+      },
+      {
+        "command": "gravionContextBridge.copyLatestHandoff",
+        "title": "Gravion Context Bridge: Copy Latest Handoff"
+      },
+      {
+        "command": "gravionContextBridge.openLatestHandoff",
+        "title": "Gravion Context Bridge: Open Latest Handoff"
+      },
+      {
+        "command": "gravionContextBridge.addProjectNote",
+        "title": "Gravion Context Bridge: Add Project Note"
+      }
+    ],
+    "configuration": {
+      "title": "Gravion Context Bridge",
+      "properties": {
+        "gravionContextBridge.includeGitContext": {
+          "type": "boolean",
+          "default": true,
+          "description": "Include read-only Git status and recent commits in new handoffs."
+        },
+        "gravionContextBridge.workspaceListingMaxDepth": {
+          "type": "number",
+          "default": 4,
+          "minimum": 0,
+          "maximum": 12,
+          "description": "Maximum directory depth to include in a workspace listing."
+        },
+        "gravionContextBridge.workspaceListingMaxEntries": {
+          "type": "number",
+          "default": 200,
+          "minimum": 10,
+          "maximum": 1000,
+          "description": "Maximum number of workspace paths to include in a handoff."
+        },
+        "gravionContextBridge.editorExcerptMaxChars": {
+          "type": "number",
+          "default": 4000,
+          "minimum": 100,
+          "maximum": 50000,
+          "description": "Maximum number of characters included for each visible editor."
+        },
+        "gravionContextBridge.redactSecrets": {
+          "type": "boolean",
+          "default": true,
+          "description": "Best-effort redact common secret patterns from handoff text and editor excerpts. Review every handoff before sharing it."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test",
+    "check": "node --check src/core.js && node --check src/extension.js && node --check test/core.test.js",
+    "package": "npx @vscode/vsce package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gravion-ux/gravion-context-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gravion-ux/gravion-context-bridge/issues"
+  },
+  "homepage": "https://github.com/gravion-ux/gravion-context-bridge#readme"
+}
